@@ -6,6 +6,8 @@ Montar uma rede de campus com redundância total na camada 2 e no gateway, aplic
 
 ### Nós
 
+[[<img width="836" height="524" alt="image" src="https://github.com/user-attachments/assets/33f94d90-27e4-4479-a86c-9ced8f08f5ed" />]]
+
 | Nó | Imagem | Função |
 |---|---|---|
 | CORE1, CORE2 | vIOS L2 | Core (collapsed core), switch L3, gateway |
