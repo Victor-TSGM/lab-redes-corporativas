@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<lab name="LAB-INICIAL" id="3b521227-eae5-4c3e-8a78-3fc100eea0a9" version="1" scripttimeout="300" lock="0" author="FRANCISCO NETO">
+  <description>LAB INICIAL PARA O ALUNO TESTAR ALGUMAS FUNCIONALIDADES DO ROUTEROS.
+
+WWW.REDESBRASIL.COM</description>
+  <topology>
+    <nodes>
+      <node id="1" name="CORE1" type="qemu" template="viosl2" image="viosl2-adventerprisek9-m.ssa.high_iron_20200929" console="telnet" cpu="1" cpulimit="0" ram="512" ethernet="8" uuid="e4e7cfce-84de-420c-997f-d4be2e1b45af" delay="0" icon="Switch L3.png" config="0" left="276" top="198">
+        <interface id="0" name="Gi0/0" type="ethernet" network_id="1"/>
+        <interface id="1" name="Gi0/1" type="ethernet" network_id="2"/>
+        <interface id="2" name="Gi0/2" type="ethernet" network_id="3"/>
+        <interface id="3" name="Gi0/3" type="ethernet" network_id="4"/>
+      </node>
+      <node id="2" name="CORE2" type="qemu" template="viosl2" image="viosl2-adventerprisek9-m.ssa.high_iron_20200929" console="telnet" cpu="1" cpulimit="0" ram="512" ethernet="8" uuid="3f801ff7-aad2-4869-ade7-75d34a7c15ca" delay="0" icon="Switch L3.png" config="0" left="489" top="198">
+        <interface id="0" name="Gi0/0" type="ethernet" network_id="1"/>
+        <interface id="1" name="Gi0/1" type="ethernet" network_id="2"/>
+        <interface id="2" name="Gi0/2" type="ethernet" network_id="5"/>
+        <interface id="3" name="Gi0/3" type="ethernet" network_id="6"/>
+      </node>
+      <node id="3" name="ACC1" type="qemu" template="viosl2" image="viosl2-adventerprisek9-m.ssa.high_iron_20200929" console="telnet" cpu="1" cpulimit="0" ram="512" ethernet="8" uuid="9809a9dd-b7e1-444b-a6dc-9db6e9990319" delay="0" icon="Switch L3.png" config="0" left="276" top="411">
+        <interface id="0" name="Gi0/0" type="ethernet" network_id="3"/>
+        <interface id="1" name="Gi0/1" type="ethernet" network_id="5"/>
+        <interface id="4" name="Gi1/0" type="ethernet" network_id="7"/>
+        <interface id="5" name="Gi1/1" type="ethernet" network_id="8"/>
+      </node>
+      <node id="4" name="ACC2" type="qemu" template="viosl2" image="viosl2-adventerprisek9-m.ssa.high_iron_20200929" console="telnet" cpu="1" cpulimit="0" ram="512" ethernet="8" uuid="1ddfb79b-0dc0-4b81-aec5-a98b78f72a4b" delay="0" icon="Switch L3.png" config="0" left="501" top="408">
+        <interface id="0" name="Gi0/0" type="ethernet" network_id="4"/>
+        <interface id="1" name="Gi0/1" type="ethernet" network_id="6"/>
+        <interface id="4" name="Gi1/0" type="ethernet" network_id="9"/>
+        <interface id="5" name="Gi1/1" type="ethernet" network_id="10"/>
+      </node>
+      <node id="5" name="PC1" type="qemu" template="linux" image="linux-redesbrasil" console="vnc" cpu="1" cpulimit="0" ram="1024" ethernet="1" uuid="1c824800-c523-4dac-81a6-18c71adaca13" firstmac="00:50:00:00:05:00" delay="0" icon="Server.png" config="0" left="144" top="546">
+        <interface id="0" name="e0" type="ethernet" network_id="7"/>
+      </node>
+      <node id="6" name="PC2" type="qemu" template="linux" image="linux-redesbrasil" console="vnc" cpu="1" cpulimit="0" ram="1024" ethernet="1" uuid="1f5fded5-585a-492a-9e48-01fbbaf6d3c1" firstmac="00:50:00:00:06:00" delay="0" icon="Server.png" config="0" left="279" top="546">
+        <interface id="0" name="e0" type="ethernet" network_id="8"/>
+      </node>
+      <node id="7" name="PC3" type="qemu" template="linux" image="linux-redesbrasil" console="vnc" cpu="1" cpulimit="0" ram="1024" ethernet="1" uuid="0f569013-8438-4362-893a-ce4baeb8fb30" firstmac="00:50:00:00:07:00" delay="0" icon="Server.png" config="0" left="510" top="537">
+        <interface id="0" name="e0" type="ethernet" network_id="9"/>
+      </node>
+      <node id="8" name="PC4" type="qemu" template="linux" image="linux-redesbrasil" console="vnc" cpu="1" cpulimit="0" ram="1024" ethernet="1" uuid="14d3c7ac-f33e-4b52-b8f5-c8a53d56b267" firstmac="00:50:00:00:08:00" delay="0" icon="Server.png" config="0" left="663" top="543">
+        <interface id="0" name="e0" type="ethernet" network_id="10"/>
+      </node>
+    </nodes>
+    <networks>
+      <network id="1" type="bridge" name="Net-CORE1iface_0" left="376" top="308" visibility="0"/>
+      <network id="2" type="bridge" name="Net-CORE1iface_1" left="381" top="233" visibility="0"/>
+      <network id="3" type="bridge" name="Net-CORE1iface_2" left="510" top="346" visibility="0"/>
+      <network id="5" type="bridge" name="Net-CORE2iface_2" left="470" top="202" visibility="0"/>
+      <network id="6" type="bridge" name="Net-CORE2iface_3" left="524" top="399" visibility="0"/>
+      <network id="7" type="bridge" name="Net-ACC1iface_4" left="307" top="186" visibility="0"/>
+      <network id="8" type="bridge" name="Net-ACC1iface_5" left="295" top="205" visibility="0"/>
+      <network id="4" type="bridge" name="Net-CORE1iface_3" left="547" top="392" visibility="0"/>
+      <network id="9" type="bridge" name="Net-ACC2iface_4" left="518" top="336" visibility="0"/>
+      <network id="10" type="bridge" name="Net-ACC2iface_5" left="420" top="350" visibility="0"/>
+    </networks>
+  </topology>
+</lab>
