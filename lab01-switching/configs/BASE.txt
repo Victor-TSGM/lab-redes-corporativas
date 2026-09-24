@@ -1,0 +1,20 @@
+hostname <NOME>                    | define hostname
+no ip domain-lookup                | impede que comando digitaado errado seja interpretado como domain name
+
+line con 0                         
+ logging synchronous               | evita que logs fiquem aparecendo no CLI
+ exec-timeout 0 0                  | impede que sessão seja desativada por inatividade
+
+vtp mode transparent               | configurações de VLANs não sao enviadas a outros switches
+
+spanning-tree mode rapid-pvst      | ativa STP no rapid-pvst, identifica anéis e desativa portas redundantes
+
+=== Criação das VLANs em todos os switches ===
+vlan 10
+ name USUARIOS
+vlan 20
+ name SERVIDORES
+vlan 99
+ name GERENCIA
+vlan 999
+ name NATIVA-NAO-USADA

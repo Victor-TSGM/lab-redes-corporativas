@@ -1,0 +1,59 @@
+// Agregação com EtherChannel, criando Port Channel 1 entre COREs - negociação com LACP.
+
+interface range gi0/0 - 1
+ description PO1-PARA-CORE1
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 10,20,99
+ channel-group 1 mode active
+ no shutdown
+
+----------------------------------------------------------------------------------------------------
+// Criando porta trunk para conexão com ACC1 e ACC2, definindo VLANs permitidas e vlan nativa
+
+interface gi0/2
+ description UPLINK-ACC1
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 10,20,99
+ no shutdown
+!
+interface gi0/3
+ description UPLINK-ACC2
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 10,20,99
+ no shutdown
+
+-------------------------------------------------------------------------------------------------------
+// Definindo CORE1 como Root Bridge STP para a VLAN 99. Deixando como secondary para as VLANs 10 e 20
+
+spanning-tree vlan 20 root primary
+spanning-tree vlan 10,99 root secondary
+
+---------------------------------------------------------------------------------------------------------
+//roteamento inter-vlans
+
+ip routing
+!
+interface vlan 10
+ ip address 10.10.10.3 255.255.255.0
+ standby 10 ip 10.10.10.1
+ standby 10 preempt
+ no shutdown
+!
+interface vlan 20
+ ip address 10.10.20.3 255.255.255.0
+ standby 20 ip 10.10.20.1
+ standby 20 priority 110
+ standby 20 preempt
+ no shutdown
+!
+interface vlan 99
+ ip address 10.10.99.3 255.255.255.0
+ standby 99 ip 10.10.99.1
+ standby 99 preempt
+ no shutdown
